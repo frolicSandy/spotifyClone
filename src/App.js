@@ -48,20 +48,27 @@ function App() {
 
             /** retrieve user's playlists info from spotify and dispatch it into the data layer */
             spotify.getUserPlaylists().then((playlists) => {
+                console.log('user playlists: ',playlists);
                 dispatch({
                     type: "SET_PLAYLISTS",
                     playlists: playlists
                 });
             });
-            
-            spotify.getPlaylist('37i9dQZF1F0sijgNaJdgit').then((response) => {
-                dispatch({
-                    type: "SET_CURRENT_PLAYLIST",
-                    current_playlist: response
+
+            /** Searches for playlists with the name "Spotify Wrapped" and then retrieves the playlist, extracts its id
+             * and sets it to global state.
+             */
+            spotify.searchPlaylists('Spotify Wrapped').then((response) => {
+                spotify.getPlaylist(response?.playlists?.items[0]?.id).then((response) => {
+                    dispatch({
+                        type: "SET_CURRENT_PLAYLIST",
+                        current_playlist: response
+                    });
                 });
             });
         }
     }, [accessToken, dispatch]);
+
     return (
         <div className='app'>
             
