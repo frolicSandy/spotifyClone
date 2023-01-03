@@ -23,7 +23,7 @@ function SidebarOption({ title, Icon, id }) {
             /** Searches for playlists with the name "Spotify Wrapped" and then retrieves the playlist, extracts its id
              * and sets it to global state.
              */
-            spotify.searchPlaylists('Spotify Wrapped').then((response) => {
+            spotify.searchPlaylists('Top 50').then((response) => {
                 spotify.getPlaylist(response?.playlists?.items[0]?.id).then((response) => {
                     dispatch({
                         type: "SET_CURRENT_PLAYLIST",

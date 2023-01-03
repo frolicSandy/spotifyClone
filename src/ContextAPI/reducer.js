@@ -8,6 +8,7 @@ export const initialState = {
     nowPlaying: null,
     recommendations: [],
     libraryVisible: false,
+    searchResult: [],
     // accessToken: null
     /** REMOVE after development */
     // accessToken: 'BQDVUSDt-MhldPaljrF8Zmr6d2MNSkQc4CxbSSunWe91yjH0uFRidyizxBtAWDQC8N4Z7ckw2VgGRcjAuDuaA-CH9w_Gr11FNImKhdxrgAn7gzt6w4kR7LNK0D97bJSpgEfs2Iya2YeMkdAGWz4bdfxWN4vSamRFizTjiMT5qHOldW5VeJ27TqAuXMWODGoIgzhr8YzxmUTPh4FObGYY'
@@ -19,6 +20,8 @@ export const initialState = {
  */
 export const reducer = (state, action) => {
     /** action --> type, [payload] */
+    /** console.log('action: ', action); */
+
     switch(action.type){
         case 'SET_USER':
             return {
@@ -55,6 +58,11 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 libraryVisible: action.libraryVisible
+            };
+        case 'SET_SEARCH_RESULTS':
+            return {
+               ...state,
+                searchResult: action.payload.tracks.items
             };
         default:
             return state;

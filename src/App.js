@@ -1,4 +1,3 @@
-import './App.css';
 import Login from './components/Login';
 import Player from './components/Player';
 import React, { useEffect } from 'react';
@@ -27,6 +26,7 @@ function App() {
         window.location.hash = "";  /** Removes the access token from the url */
         const _accessToken = hash.access_token;
         if (_accessToken){
+
             /** Adding(rather DISPATCHING) access token to data layer */
             dispatch({
                 type: "SET_ACCESS_TOKEN",
@@ -46,9 +46,9 @@ function App() {
                 });
             });
 
+
             /** retrieve user's playlists info from spotify and dispatch it into the data layer */
             spotify.getUserPlaylists().then((playlists) => {
-                console.log('user playlists: ',playlists);
                 dispatch({
                     type: "SET_PLAYLISTS",
                     playlists: playlists
@@ -58,7 +58,7 @@ function App() {
             /** Searches for playlists with the name "Spotify Wrapped" and then retrieves the playlist, extracts its id
              * and sets it to global state.
              */
-            spotify.searchPlaylists('Spotify Wrapped').then((response) => {
+            spotify.searchPlaylists('Top 50').then((response) => {
                 spotify.getPlaylist(response?.playlists?.items[0]?.id).then((response) => {
                     dispatch({
                         type: "SET_CURRENT_PLAYLIST",
