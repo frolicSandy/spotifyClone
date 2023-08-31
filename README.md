@@ -1,3 +1,7 @@
+### Uses spotify-web-api in development mode with limited access. Use the following email-id and password to view:
+#### `Email- shubhflair@gmail.com` 
+#### `Password- testUserForSpotifyCloneProject`
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
